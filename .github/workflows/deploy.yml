@@ -42,5 +42,5 @@ jobs:
               && chmod 775 ${remote_dir}\storage\cache
               && chmod 775 ${remote_dir}\storage\sessions
               && chmod 775 ${remote_dir}\storage\testing
-              && chmod 775 ${remote_dir}\storage\views}"
+              && chmod 775 ${remote_dir}\storage\views"
           rm ~/.ssh/id_github
