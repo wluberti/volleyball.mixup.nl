@@ -24,5 +24,8 @@ jobs:
           mkdir -p ~/.ssh
           echo "$remote_key" > ~/.ssh/id_github
           chmod 600 ~/.ssh/id_github
-          rsync -avzr --delete -e "ssh -i ~/.ssh/id_github -o StrictHostKeyChecking=no" ${local_dir} ${remote_user}@${remote_host}:${remote_dir}
+          rsync -avzr --delete -e "ssh -i ~/.ssh/id_github -o StrictHostKeyChecking=no" ${local_dir} ${remote_user}@${remote_host}:${remote_dir} --filter='P .env'
+          ssh -i ~/.ssh/id_github -o StrictHostKeyChecking=no ${remote_user}@${remote_host} "cd ${remote_dir} && composer install"
+          ssh -i ~/.ssh/id_github -o StrictHostKeyChecking=no ${remote_user}@${remote_host} "cd ${remote_dir} && npm install"
+          ssh -i ~/.ssh/id_github -o StrictHostKeyChecking=no ${remote_user}@${remote_host} "chown www-data:www-data -R ${remote_dir}\storage"
           rm ~/.ssh/id_github
