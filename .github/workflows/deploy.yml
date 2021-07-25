@@ -19,7 +19,7 @@ jobs:
           key: dependencies-composer-${{ hashFiles('composer.json') }}
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-interaction --no-suggest
+        run: composer install --optimize-autoloader --no-dev --no-interaction
 
       - name: Install NPM dependencies
         run: npm install

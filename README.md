@@ -1,10 +1,10 @@
 # Deploy
 If you want to use this code and deploy it through Github Actions, please make sure you configure the parts relevant to your use case.
 
-`REMOTE_HOST` - SSH hostname of the server that will run the Nginx with PHP
-`REMOTE_USER` - SSH username to log in to REMOTE_HOST
-`SSH_PRIVATE_KEY` - SSH private key relevant to REMOTE_USER
-`REMOTE_TARGET` - Target directory to put the code in on REMOTE_HOST
+* `REMOTE_HOST` - SSH hostname of the server that will run the Nginx with PHP
+* `REMOTE_USER` - SSH username to log in to REMOTE_HOST
+* `SSH_PRIVATE_KEY` - SSH private key relevant to REMOTE_USER
+* `REMOTE_TARGET` - Target directory to put the code in on REMOTE_HOST
 
 # Nginx
 ```nginx configuration
