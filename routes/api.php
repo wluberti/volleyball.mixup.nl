@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +22,15 @@ Route::get('profile', function () {
         'series' => 200,
         'lessons' => 1600,
     ];
+});
+
+Route::get('games', function () {
+//    return request()->user()->games;
+    return [
+        ["location" =>"location 1", "description" => "Marnix on 20210730"],
+        ["location" =>"location 2", "description" => "Pijp on 20210730"],
+        ["location" =>"location 3", "description" => "Verhij on 20210730"],
+        ["location" =>"location 4", "description" => "Hogendorp on 20210730"],
+    ];
+//})->middleware('auth:api');
 });

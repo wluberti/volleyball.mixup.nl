@@ -1868,7 +1868,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      games: [],
+      token: '',
+      message: ''
+    };
+  },
+  methods: {
+    fetchGames: function fetchGames() {
+      var _this = this;
+
+      axios.get("http://localhost/api" + '/games?api_token=${this.token}')["catch"](function (error) {
+        _this.message = error.response.data.message;
+        _this.games = [];
+      }).then(function (_ref) {
+        var data = _ref.data;
+        _this.games = data;
+        _this.message = null;
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -2632,7 +2672,55 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("p", [_vm._v("Home")])
+  return _c("div", [
+    _c("h1", [_vm._v("Home")]),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.token,
+          expression: "token"
+        }
+      ],
+      staticClass: "border p-2 rounded w-full",
+      attrs: { placeholder: "your token" },
+      domProps: { value: _vm.token },
+      on: {
+        keyup: function($event) {
+          if (
+            !$event.type.indexOf("key") &&
+            _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+          ) {
+            return null
+          }
+          return _vm.fetchGames.apply(null, arguments)
+        },
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.token = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c(
+      "ul",
+      _vm._l(_vm.games, function(game) {
+        return _c("li", { domProps: { textContent: _vm._s(game.description) } })
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _vm.message
+      ? _c("p", {
+          staticClass: "text-red italic text-sm",
+          domProps: { textContent: _vm._s(_vm.message) }
+        })
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
