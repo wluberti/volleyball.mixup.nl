@@ -13,7 +13,7 @@ class AddGamesTable extends Migration
      */
     public function up()
     {
-        Schema::table('games', function (Blueprint $table) {
+        Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->string('location');
             $table->dateTime('date_and_time');
@@ -29,8 +29,6 @@ class AddGamesTable extends Migration
      */
     public function down()
     {
-        Schema::table('games', function (Blueprint $table) {
-            Schema::dropIfExists('games');
-        });
+        Schema::dropIfExists('games');
     }
 }
