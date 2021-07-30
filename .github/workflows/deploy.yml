@@ -36,7 +36,7 @@ jobs:
           mkdir -p ~/.ssh
           echo "$remote_key" > ~/.ssh/id_github
           chmod 600 ~/.ssh/id_github
-          rsync -avzr --delete -e "ssh -i ~/.ssh/id_github -o StrictHostKeyChecking=no" ${local_dir} ${remote_user}@${remote_host}:${remote_dir} --filter='P .env'
+          rsync -avzr --delete --force -e "ssh -i ~/.ssh/id_github -o StrictHostKeyChecking=no" ${local_dir} ${remote_user}@${remote_host}:${remote_dir} --filter='P .env'
           rm ~/.ssh/id_github
 
       - name: Fixed rights and running migrations
