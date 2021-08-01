@@ -36,7 +36,7 @@ jobs:
           mkdir -p ~/.ssh
           echo "$remote_key" > ~/.ssh/id_github
           chmod 600 ~/.ssh/id_github
-          rsync -avzr --delete --force -e "ssh -i ~/.ssh/id_github -o StrictHostKeyChecking=no" ${local_dir} ${remote_user}@${remote_host}:${remote_dir} --filter='P .env' --filter='P storage/framework/cache/data'
+          rsync -avzr --delete --force -e "ssh -i ~/.ssh/id_github -o StrictHostKeyChecking=no" ${local_dir} ${remote_user}@${remote_host}:${remote_dir} --filter='P .env' --filter='P storage/framework/cache/data/*'
           rm ~/.ssh/id_github
 
       - name: Fix rights, set npm production env, and run migrations
