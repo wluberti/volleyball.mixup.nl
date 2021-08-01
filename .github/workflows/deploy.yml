@@ -51,7 +51,7 @@ jobs:
           mkdir -p ~/.ssh
           echo "$remote_key" > ~/.ssh/id_github
           chmod 600 ~/.ssh/id_github
-          ssh -i ~/.ssh/id_github -o StrictHostKeyChecking=no ${remote_user}@${remote_host} "cd ${remote_dir} && chmod 775 storage storage/logs storage/framework/{cache,sessions,testing,views}"
+          ssh -i ~/.ssh/id_github -o StrictHostKeyChecking=no ${remote_user}@${remote_host} "cd ${remote_dir} && chmod 775 storage storage/logs storage/framework/{cache,cache/data,sessions,testing,views}"
           ssh -i ~/.ssh/id_github -o StrictHostKeyChecking=no ${remote_user}@${remote_host} "cd ${remote_dir} && php artisan migrate"
           ssh -i ~/.ssh/id_github -o StrictHostKeyChecking=no ${remote_user}@${remote_host} "cd ${remote_dir} && npm run prod"
           rm ~/.ssh/id_github
