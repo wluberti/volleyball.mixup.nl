@@ -12,3 +12,5 @@ const app = new Vue({
     el: '#app',
     router: new VueRouter(routes)
 });
+
+require('alpinejs');
