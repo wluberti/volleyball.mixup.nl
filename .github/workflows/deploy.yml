@@ -39,7 +39,7 @@ jobs:
           rsync -avzr --delete --force -e "ssh -i ~/.ssh/id_github -o StrictHostKeyChecking=no" ${local_dir} ${remote_user}@${remote_host}:${remote_dir} --filter='P .env'
           rm ~/.ssh/id_github
 
-      - name: Fixed rights and running migrations
+      - name: Fix rights, set npm production env, and run migrations
         env:
           remote_host: ${{ secrets.REMOTE_HOST }}
           remote_user: ${{ secrets.REMOTE_USER }}
@@ -53,4 +53,5 @@ jobs:
           chmod 600 ~/.ssh/id_github
           ssh -i ~/.ssh/id_github -o StrictHostKeyChecking=no ${remote_user}@${remote_host} "cd ${remote_dir} && chmod 775 storage storage/logs storage/framework/{cache,sessions,testing,views}"
           ssh -i ~/.ssh/id_github -o StrictHostKeyChecking=no ${remote_user}@${remote_host} "cd ${remote_dir} && php artisan migrate"
+          ssh -i ~/.ssh/id_github -o StrictHostKeyChecking=no ${remote_user}@${remote_host} "cd ${remote_dir} && npm run prod"
           rm ~/.ssh/id_github
